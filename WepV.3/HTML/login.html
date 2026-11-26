@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>กยศ. - ระบบติดตามสถานะการส่งเอกสาร</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;500;700&display=swap" rel="stylesheet" />
+<link href="login.css?v=4" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <a class="login-pill" href="Adminlogin.html"><span class="logo" aria-hidden="true"></span>เข้าสู่ระบบ</a>
+    <h1 class="title">ระบบติดตามสถานะการส่งเอกสาร <span>กยศ.</span></h1>
+    <p class="faculty">- คณะวิทยาการสารสนเทศ -</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2 class="heading">ตรวจสอบสถานะการส่งเอกสาร</h2>
+      <p class="instruction">กรอกเลขประจำตัวประชาชน 13 หลัก เพื่อตรวจสอบสถานะล่าสุด</p>
+
+      <form id="loginForm" novalidate>
+        <label class="field" id="field">
+          <input id="studentId" name="studentId" type="text" inputmode="numeric"
+                 autocomplete="off" maxlength="13" spellcheck="false" enterkeyhint="search" aria-label="เลขบัตรประชาชน หรือ รหัสนิสิต"
+                 placeholder="เลขบัตรประชาชน หรือ รหัสนิสิต" aria-describedby="error" required />
+        </label>
+
+        <button class="btn-submit" id="submitBtn" type="submit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path>
+          </svg>
+          ตรวจสอบสถานะ
+        </button>
+
+        <ul class="hints">
+          <li id="ruleStudent">*รหัสนิสิตต้องมีตัวเลข 11 ตัว</li>
+          <li id="ruleCitizen">*เลขบัตรประชาชนต้องครบ 13 หลัก</li>
+          <li id="ruleChars">*ห้ามมีเว้นวรรคและตัวอักษรพิเศษ</li>
+        </ul>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+
+      <div class="result" id="result" hidden></div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const input = document.getElementById('studentId');
+    const field = document.getElementById('field');
+    const errEl = document.getElementById('error');
+    const result = document.getElementById('result');
+    const btn = document.getElementById('submitBtn');
+    const ruleStudent = document.getElementById('ruleStudent');
+    const ruleCitizen = document.getElementById('ruleCitizen');
+    const ruleChars = document.getElementById('ruleChars');
+
+    // เหลือเฉพาะตัวเลข (รวมกรณีวางข้อความที่มีเว้นวรรค/ขีด)
+    input.addEventListener('input', () => {
+      const raw = input.value;
+      const clean = raw.replace(/\D/g, '').slice(0, 13);
+      input.value = clean;
+      ruleStudent.classList.toggle('ok', clean.length === 11);
+      ruleCitizen.classList.toggle('ok', clean.length === 13);
+      ruleChars.classList.toggle('ok', clean.length > 0 && raw === clean);
+      field.classList.remove('invalid');
+      errEl.textContent = '';
+    });
+
+    function validate(v) {
+      if (!v) return 'กรุณากรอกเลขบัตรประชาชน หรือ รหัสนิสิต';
+      if (!/^\d+$/.test(v)) return 'ห้ามมีเว้นวรรคและตัวอักษรพิเศษ';
+      if (v.length !== 11 && v.length !== 13) return 'รหัสนิสิตต้องมี 11 ตัว หรือเลขบัตรประชาชนต้องครบ 13 หลัก';
+      return '';
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      result.hidden = true;
+      const v = input.value.trim();
+      const msg = validate(v);
+      if (msg) { errEl.textContent = msg; field.classList.add('invalid'); input.focus(); return; }
+
+      // ค้นหารหัสนิสิตจากรายชื่อที่แอดมินบันทึกไว้ (kyor_roster) แล้วไปหน้าแสดงสถานะ
+      let roster = [];
+      try { roster = JSON.parse(localStorage.getItem('kyor_roster')) || []; } catch (err) { roster = []; }
+      if (v.length === 13) { errEl.textContent = 'ระบบยังไม่รองรับการค้นหาด้วยเลขบัตรประชาชน กรุณาใช้รหัสนิสิต 11 หลัก'; field.classList.add('invalid'); input.focus(); return; }
+      const found = roster.filter(s => s.id === v)[0];
+      if (!found) { errEl.textContent = 'ไม่พบข้อมูลของเลขที่กรอก กรุณาตรวจสอบอีกครั้ง'; field.classList.add('invalid'); input.focus(); return; }
+      btn.disabled = true;
+      location.href = 'Show_status.html?id=' + encodeURIComponent(found.id);
+    });
+      // กลับมาจากหน้าแสดงสถานะ (bfcache) ให้ปุ่มกดได้อีกครั้ง
+    window.addEventListener('pageshow', () => { btn.disabled = false; });
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#e9eef5;font-family:Prompt,sans-serif;color:#000;overflow:hidden}
+.wrap{width:1440px;height:1295px;transform-origin:top left}
+.page{position:relative;width:1440px;height:1295px;margin:0;overflow:hidden;background:#fff;border:1px solid #999;border-radius:10px}
+.page>*{position:absolute}
+.logos{left:70px;top:46px;height:80px;display:flex;align-items:center;gap:14px}
+.logos img{height:80px;width:auto;display:block}
+.head{left:0;top:0;width:100%;height:170px;border-radius:0 0 50px 50px;background:linear-gradient(90deg,#a0d2fb,#d7edff)}
+.title{left:391px;top:48px;margin:0;font-size:50px;line-height:76px;font-weight:700;color:#25289c;text-shadow:2px 3px 3px rgba(0,0,0,.25);white-space:nowrap}
+.fac{left:0;width:1440px;top:128px;text-align:center;font-size:36px;line-height:48px;font-weight:700;color:#005ccd}
+.logout{left:1141px;top:51px;width:229px;height:69px;border:0;border-radius:35px;background:#e65454;color:#fff;font:700 32px Prompt,sans-serif;box-shadow:2px 3px 4px rgba(0,0,0,.35);cursor:pointer}
+.panel{left:0;top:184px;bottom:0;width:1440px;border-radius:18px;background:linear-gradient(#fff,#a0d2fb)}
+.tbl{left:0;top:618px;bottom:0;width:1440px;border-radius:18px;background:#fdfdfd}
+.b{font-size:24px;line-height:32px;font-weight:700;white-space:nowrap}
+.dot{width:20px;height:20px;border-radius:50%;background:#41fd47}
+.hist{left:420px;top:279px;width:30px;height:30px;border-radius:50%;background:#d7edff}
+.stat{top:350px;width:280px;height:104px;border-radius:18px;background:#fff;box-shadow:4px 4px 2px rgba(0,0,0,.25)}
+.st-t{top:354px;width:280px;text-align:center;font-size:20px;line-height:28px;font-weight:700}
+.st-n{top:398px;width:80px;margin-left:-40px;text-align:center;font-size:44px;line-height:52px;font-weight:700}
+.circ{top:384px;width:67px;height:67px;border-radius:50%;background:#ded300;display:flex;align-items:center;justify-content:center;box-shadow:2px 3px 4px rgba(0,0,0,.25)}
+.circ img{width:42px;height:42px}
+.search{left:311px;top:484px;width:829px;height:61px;border-radius:18px;background:#fff;box-shadow:inset 2px 2px 3px rgba(0,0,0,.25)}
+.search-i{left:340px;top:499px;width:32px;height:32px}
+.ph{left:393px;top:497px;font-size:22px;line-height:32px;font-weight:300;color:#aaa}
+.h,.c{font-size:18px;line-height:35px;white-space:nowrap}
+.h{top:566px;font-weight:700;color:#333}
+.c{font-weight:300}
+.m,.hm{transform:translateX(-50%)}
+.cb{left:51px;width:26px;height:26px;border:2px solid #b8bcc2;border-radius:5px;background:#fff}
+.pill{height:35px;line-height:35px;border-radius:18px;text-align:center;font-size:17px;font-weight:700;color:#333;white-space:nowrap}
+.pill.y{left:739px;width:157px;background:#e6d82a}
+.pill.g{left:1243px;width:128px;background:#6cff70}
+.empty{left:0;top:618px;width:1440px;height:165px;border-radius:0 0 18px 18px;background:#ebedff;display:none;align-items:center;justify-content:center;font-size:32px;font-weight:300;color:#222}
+.empty.show{display:flex}
+
+button,input{font-family:inherit}
+.page>.b.tab{background:none;border:0;padding:0 12px;height:40px;left:33px;top:275px;border-radius:20px;color:#000;cursor:pointer;transition:transform .12s ease,background .2s ease,box-shadow .2s ease}
+.page>.b.tab.t2{left:236px}
+.tab:hover{background:rgba(255,255,255,.7);transform:translateY(-2px)}
+.tab:active{transform:translateY(1px) scale(.94)}
+.tab.on{background:#d7edff;box-shadow:inset 0 -3px 0 #25289c}
+.btn{-webkit-tap-highlight-color:transparent;user-select:none}
+.logout{transition:transform .12s ease,box-shadow .2s ease,background .2s ease}
+.logout:hover{background:#d84040;transform:translateY(-2px);box-shadow:2px 7px 10px rgba(0,0,0,.35)}
+.logout:active{transform:translateY(2px) scale(.94);box-shadow:1px 1px 2px rgba(0,0,0,.35)}
+.page>.card{width:280px;height:104px;top:350px;cursor:pointer;border-radius:18px;transition:transform .12s ease,filter .2s ease;outline:none;-webkit-tap-highlight-color:transparent}
+.card>*{position:absolute}
+.card .stat{left:0;top:0;transition:box-shadow .2s ease,background .2s ease}
+.card .st-t{left:0;top:4px}
+.card .st-n{left:158px;top:48px}
+.card .circ{left:4px;top:34px}
+.card:hover{transform:translateY(-4px)}
+.card:hover .stat{box-shadow:4px 10px 10px rgba(0,0,0,.25)}
+.card:active{transform:translateY(1px) scale(.95)}
+.card:active .stat{box-shadow:1px 2px 2px rgba(0,0,0,.3)}
+.card.on .stat{background:#eaf4ff;box-shadow:0 0 0 3px #25289c,4px 4px 2px rgba(0,0,0,.25)}
+.card:focus-visible .stat{box-shadow:0 0 0 3px #7b83ff,4px 4px 2px rgba(0,0,0,.25)}
+.search{transition:box-shadow .2s ease}
+.search:focus-within{box-shadow:inset 2px 2px 3px rgba(0,0,0,.25),0 0 0 4px rgba(37,40,156,.28)}
+.search>*{position:absolute}
+.search input{left:82px;top:0;width:690px;height:61px;border:0;outline:0;background:transparent;font-size:22px;font-weight:300;color:#000;padding:0}
+.search input::placeholder{color:#aaa}
+.search .clear{right:18px;top:14px;width:33px;height:33px;border:0;border-radius:50%;background:#d7edff;color:#25289c;font-size:24px;line-height:1;cursor:pointer;display:none;transition:transform .12s ease,background .2s ease}
+.search .clear:hover{background:#a0d2fb;transform:scale(1.1)}
+.search .clear:active{transform:scale(.85)}
+.search.has .clear{display:block}
+.cb{cursor:pointer;transition:transform .12s ease,background .2s ease,border-color .2s ease}
+.cb:hover{border-color:#25289c}
+.cb:active{transform:scale(.82)}
+.cb.on{background:#25289c;border-color:#25289c}
+.cb.on:after{content:"";position:absolute;left:7px;top:2px;width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+
+/* ===== หน้ารายชื่อ ===== */
+.page>.row{left:0;width:1440px;height:35px}
+.row>*{position:absolute;top:0}
+.row.hide{display:none}
+.row .cb{left:51px;top:4px}
+.pill.g{border:0;padding:0;cursor:pointer;transition:transform .12s ease,box-shadow .2s ease,background .2s ease}
+.pill.g:hover{background:#4fe854;transform:translateY(-2px);box-shadow:0 5px 8px rgba(0,0,0,.25)}
+.pill.g:active{transform:translateY(1px) scale(.93);box-shadow:none}
+.cb.part{background:#b8bcc2;border-color:#b8bcc2}
+.cb.part:after{content:"";position:absolute;left:5px;top:10px;width:12px;height:3px;background:#fff;border-radius:2px}
+/* Full-screen layout: backgrounds stretch to the viewport, content stays centered */
+body{background:#fff}
+.page{border:0;border-radius:0}
+.head,.panel,.tbl,.empty,.fac{left:0;width:100%}
+.page>*:not(.head):not(.panel):not(.tbl):not(.empty):not(.fac):not(.title){margin-left:var(--dx,0px)}
+/* ===== Balance: shared 70px side margins, centered title, right-aligned status ===== */
+.head{height:180px}
+.logos{top:38px}
+.title{left:0;width:100%;top:40px;text-align:center;font-size:46px;pointer-events:none}
+.fac{top:116px}
+.logout{top:44px}
+.who{left:70px;top:209px;width:1300px;height:32px;display:flex;align-items:center;justify-content:space-between}
+.who .off{display:flex;align-items:center;gap:10px}
+.page>.b.tab{left:58px}
+.page>.b.tab.t2{left:261px}
+.hist{left:445px}
+.cnt{left:70px;top:279px;width:1300px;text-align:right;pointer-events:none}
+.search{left:306px}
+.search-i{left:335px}
+#cball,.row .cb{left:70px}
+.pill.y{left:737px}
+.pill.g{left:1242px}
+/* Same scale as the empty page (fit to 800px height); extra rows scroll */
+body{overflow-x:hidden;overflow-y:auto}
+html{scrollbar-width:none}
+body::-webkit-scrollbar,html::-webkit-scrollbar{display:none}
+.hist{display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#25289c;line-height:1}
+.nm{color:#000;text-decoration:none;cursor:pointer;border-radius:6px;padding:0 4px;margin-left:-4px;transition:color .15s ease,background .15s ease,transform .12s ease}
+.nm:hover{color:#25289c;background:rgba(215,237,255,.9);text-decoration:underline}
+.nm:active{transform:scale(.96)}
+.nm:focus-visible{outline:3px solid #9db6ff;outline-offset:2px}
+/* ===== ติดปัญหา / ยืนยันรับเอกสาร ===== */
+.pill.y.prob{background:#ff7b7b;color:#fff}
+.pill.y.fin{background:#6cff70}
+.pill.g:disabled{background:#d3d8e0;color:#888;cursor:not-allowed}
+.pill.g:disabled:hover{background:#d3d8e0;transform:none;box-shadow:none}
+.toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,20px);background:#25289c;color:#fff;padding:12px 28px;border-radius:999px;font-weight:500;font-size:18px;opacity:0;transition:opacity .25s ease,transform .25s ease;z-index:60;pointer-events:none;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.rsub{left:297px;top:36px;max-width:430px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;line-height:20px;font-weight:500;color:#ff0606}
+.bulk{display:none;left:1160px;top:490px;width:210px;height:49px;border-radius:25px;font-size:17px;box-shadow:2px 3px 4px rgba(0,0,0,.25)}
+.bulk.show{display:block}
+.bulknote{display:none;left:1160px;top:541px;width:210px;text-align:center;font-size:13px;line-height:18px;font-weight:500;color:#ff0606}
+.bulknote.show{display:block}
+.cb.lock{background:#e6e8ec;border-color:#d3d8e0;cursor:not-allowed;opacity:.6}
+.cb.lock:hover{border-color:#d3d8e0}
+.cb.lock:active{transform:none}
+.pill.y{left:705px;width:220px}
+.rsub{max-width:395px}
+.pill.y{left:815px;width:auto;min-width:157px;padding:0 20px;transform:translateX(-50%)}
+.rsub{max-width:395px}
+/* ===== แก้ปุ่ม "ยืนยันที่เลือก" ให้ตำแหน่ง/ขนาดถูกต้อง (.pill.g เดิมทับ .bulk) + focus ด้วยคีย์บอร์ด ===== */
+.pill.g.bulk{left:1160px;width:210px;height:49px;border-radius:25px;font-size:17px}
+.cb:focus-visible,.pill.g:focus-visible,.logout:focus-visible,.tab:focus-visible,.search .clear:focus-visible{outline:3px solid #7b83ff;outline-offset:2px}
+/* ===== กล่องยืนยัน (แทน confirm ของเบราว์เซอร์) ===== */
+.dlg{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;background:rgba(10,20,50,.45);opacity:0;pointer-events:none;transition:opacity .18s ease}
+.dlg.open{opacity:1;pointer-events:auto}
+.dlgbox{width:min(440px,90vw);background:#fff;border-radius:24px;padding:30px 30px 28px;text-align:center;transform:scale(.92);transition:transform .18s ease;box-shadow:0 18px 50px rgba(0,0,0,.3)}
+.dlg.open .dlgbox{transform:scale(1)}
+.dlgico{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:#d7edff;display:flex;align-items:center;justify-content:center}
+.dlgbox h4{margin:0 0 8px;font-size:26px;line-height:36px;font-weight:700;color:#25289c}
+.dlgbox p{margin:0 0 24px;font-size:18px;line-height:1.5;font-weight:300;color:#333}
+.dlgbtns{display:flex;justify-content:center;gap:16px}
+.dlgbtns button{height:48px;padding:0 30px;border:0;border-radius:999px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:2px 4px 6px rgba(0,0,0,.22);transition:transform .12s ease,box-shadow .2s ease,background .2s ease;-webkit-tap-highlight-color:transparent;user-select:none}
+.dlgbtns button:hover{transform:translateY(-2px);box-shadow:2px 8px 12px rgba(0,0,0,.25)}
+.dlgbtns button:active{transform:translateY(1px) scale(.95);box-shadow:1px 1px 2px rgba(0,0,0,.25)}
+.dlgbtns button:focus-visible{outline:3px solid #7b83ff;outline-offset:3px}
+#dNo{background:#d3d8e0;color:#333}
+#dNo:hover{background:#c4cad4}
+#dYes{background:#e65454;color:#fff}
+#dYes:hover{background:#d84040}
+
+/* ===== ปุ่มทดสอบ (ซ่อนได้ด้วย TEST_MODE=false ใน HTML) ===== */
+.devbar{position:fixed;left:12px;bottom:12px;z-index:70;display:flex;gap:8px}
+.devbar button{height:34px;padding:0 14px;border:1px solid #9aa4b5;border-radius:17px;background:rgba(255,255,255,.92);color:#333;font-size:14px;font-weight:500;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.18);transition:transform .12s ease,background .2s ease}
+.devbar button:hover{background:#d7edff;transform:translateY(-2px)}
+.devbar button:active{transform:translateY(1px) scale(.94)}
+.devbar button:focus-visible{outline:3px solid #9db6ff;outline-offset:2px}
